@@ -1,3 +1,42 @@
 body {
-    background-color: 231, 225, 214;
+    background-color: rgb(231, 225, 214);
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px dotted darkslateblue;
+    padding-bottom: 5px;
+}
+
+h1 {
+    color: #1050aa;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2.2em;
+}
+
+#intro {
+    font-weight: bold;
+}
+
+.styled-section {
+    border: 2px dashed black;
+    padding: 10px;
+    margin: 10px 0;
+
+}
+
+a[href*="github"]:hover {
+    color: crimson;
+}
+
+a[href*="github"]::after {
+    content: url('./images/GitHub-Mark-32px.png');
+    display: inline-block;
+    margin-left: 5px;
+}
+
+h2::first-letter {
+    font-size: 3rem;
+    font-weight: bold;
 }
