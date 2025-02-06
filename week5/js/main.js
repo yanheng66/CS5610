@@ -63,3 +63,13 @@ function changeButtonText() {
     }
 }
 button.addEventListener("click", changeButtonText);
+
+const buttonContainer = document.querySelector("#buttonContainer");
+function changeButtonBGcolor() {
+    if event.target.nodeName !== "BUTTON" {
+        return;
+    }
+    console.log(event.target.innerHTML);
+    event.target.style.backgroundColor = event.target.innerHTML;
+}
+buttonContainer.addEventListener("click", changeButtonBGcolor);
