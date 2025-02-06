@@ -53,3 +53,13 @@ function highlightGreenItems() {
 
 changeListStyle();
 highlightGreenItems();
+
+const button = document.querySelector("#updateImage");
+function changeButtonText() {
+    if (button.innerHTML === "Click Me!") {
+        button.innerHTML = "Clicked!";
+    } else {
+        button.innerHTML = "Click Me!";
+    }
+}
+button.addEventListener("click", changeButtonText);
