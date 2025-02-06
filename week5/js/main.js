@@ -31,3 +31,25 @@ function populateShoppingList(items, element) {
         element.appendChild(li);
     });
 }
+populateShoppingList(shoppingItems, shoppingList);
+
+function changeListStyle() {
+    if (shoppingList) {
+        shoppingList.setAttribute("class", "shopping squareList");
+        shoppingList.classList.add("squareList");
+    } else {
+        console.warn("No element with class 'shopping' found.");
+    }
+}
+
+function highlightGreenItems() {
+    let items = document.querySelectorAll(".shopping li");
+    items.forEach(item => {
+        if (item.textContent.toLowerCase().includes("green")) {
+            item.style.color = "green";
+        }
+    });
+}
+
+changeListStyle();
+highlightGreenItems();
