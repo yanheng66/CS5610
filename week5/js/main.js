@@ -55,18 +55,27 @@ changeListStyle();
 highlightGreenItems();
 
 const button = document.querySelector("#updateImage");
+const buttonText = localStorage.getItem("buttonText");
+if (buttonText) {
+    button.innerHTML = buttonText;
+} else {
+    button.innerHTML = "Click Me!";
+}
+
 function changeButtonText() {
     if (button.innerHTML === "Click Me!") {
         button.innerHTML = "Clicked!";
+        localStorage.setItem("buttonText", button.innerHTML);
     } else {
         button.innerHTML = "Click Me!";
+        localStorage.setItem("buttonText", button.innerHTML);
     }
 }
 button.addEventListener("click", changeButtonText);
 
 const buttonContainer = document.querySelector("#buttonContainer");
 function changeButtonBGcolor() {
-    if event.target.nodeName !== "BUTTON" {
+    if (event.target.nodeName !== "BUTTON") {
         return;
     }
     console.log(event.target.innerHTML);
