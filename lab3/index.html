@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drink Order Form</title>
-    <link rel="stylesheet" href="styles/styles.css">
-    <script src="scripts/main.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boba Tea Order Form</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <script src="./scripts/main.js" defer></script>
 </head>
 
 <body>
+
     <h1>Boba Tea Order Form</h1>
 
     <form id="drinkForm" class="formContainer">
@@ -33,15 +34,12 @@
 
         <br><br>
 
-        <label for="toppingsSelect">Choose toppings:</label>
-        <select id="toppingsSelect" multiple>
-            <option value="">--Please choose toppings--</option>
-            <option value="boba">boba</option>
-            <option value="jelly">jelly</option>
-            <option value="pudding">pudding</option>
-        </select>
-
-        <br><br>
+        <label>Choose topping(s):</label>
+        <div class="topping-group">
+            <label><input type="checkbox" name="topping" value="boba"> boba</label>
+            <label><input type="checkbox" name="topping" value="jelly"> jelly</label>
+            <label><input type="checkbox" name="topping" value="pudding"> pudding</label>
+        </div>
 
         <button id="orderButton" type="button">Place Order</button>
     </form>
@@ -50,6 +48,7 @@
         <h2>Order Summary</h2>
         <p id="summaryText">Your order details will appear here.</p>
     </div>
+
 </body>
 
 </html>
