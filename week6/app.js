@@ -13,3 +13,18 @@ fs.writeFile('data.txt', "this is a message", (err) => {
 const logger = require('./logger.js') // this will not work because logger.js is not in the same directory as app.js
 
 logger.log() // this will not work because logger.js is not in the same directory as app.js
+
+
+const express = require('express')
+const app = express()
+
+app.get('/', function (req, res) {
+    res.send('Hello World!')
+});
+
+const port = 3000;
+
+app.listen(port, function () {
+    console.log(`Example app listening on port ${port}!`)
+});
+
