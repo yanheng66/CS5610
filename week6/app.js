@@ -10,4 +10,6 @@ fs.writeFile('data.txt', "this is a message", (err) => {
     });
 })
 
+const logger = require('./logger.js') // this will not work because logger.js is not in the same directory as app.js
 
+logger.log() // this will not work because logger.js is not in the same directory as app.js
