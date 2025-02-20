@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drink Order Form</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/main.js" defer></script>
+</head>
+
+<body>
+
+    <h2>Boba Tea Order Form</h2>
+
+    <form id="drinkForm">
+        <!-- Flavor Selection -->
+        <label for="flavor">Choose a flavor:</label>
+        <select id="flavor">
+            <option value="original">Original</option>
+            <option value="mango">Mango</option>
+            <option value="strawberry">Strawberry</option>
+        </select>
+
+        <br><br>
+
+        <!-- Size Selection -->
+        <label for="size">Choose a size:</label>
+        <select id="size">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+        </select>
+
+        <br><br>
+
+        <!-- Toppings Selection (Multiple Choice - Checkboxes) -->
+        <label>Choose topping(s) (optional):</label>
+        <div class="topping-group">
+            <label><input type="checkbox" name="topping" value="boba"> Boba</label>
+            <label><input type="checkbox" name="topping" value="jelly"> Jelly</label>
+            <label><input type="checkbox" name="topping" value="pudding"> Pudding</label>
+        </div>
+
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="button" onclick="submitOrder()">Place Order</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
