@@ -1,0 +1,9 @@
+doctype html
+html(lang="en")
+  head
+    title= "Tasks List"
+  body
+    h1 List of Tasks
+    ul
+      each task in tasks
+        li #{task.title}

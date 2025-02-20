@@ -50,13 +50,18 @@ logger.log() // this will not work because logger.js is not in the same director
 
 const express = require("express");
 const app = express();
+
+app.set("view engine", "pug");
+app.set("views", "./views");
+
 app.use(express.static('public'));
 
-
-
 const tasksRouter = require("./routes/tasks");
-
 app.use("/tasks", tasksRouter);
+
+app.get('/', function (req, res) {
+    res.send('Hello World!')
+});
 
 const port = 3000;
 
@@ -64,9 +69,3 @@ app.listen(port, function () {
     console.log(`Server running at http://localhost:${port}`);
 });
 
-app.get('/', function (req, res) {
-    res.send('Hello World!')
-});
-
-app.set("view engine", "pug");
-app.set("views", "./views");
