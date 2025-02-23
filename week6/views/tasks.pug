@@ -6,4 +6,5 @@ html(lang="en")
     h1 List of Tasks
     ul
       each task in tasks
-        li #{task.title}
+        li
+          a(href=`/tasks/${task.id}`) #{task.title}
