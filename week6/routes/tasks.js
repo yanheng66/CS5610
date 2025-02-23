@@ -14,8 +14,8 @@ const axios = require("axios");
 //         });
 // });
 
-router.get("/", function (req, res) {
-    axios.get("https://jsonplaceholder.typicode.com/todos")
+router.get("/", async function (req, res) {
+    await axios.get("https://jsonplaceholder.typicode.com/todos")
         .then(function (response) {
             const tasks = response.data;
             res.render("tasks", { tasks: tasks });
