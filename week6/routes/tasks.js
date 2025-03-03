@@ -1,55 +1,63 @@
+// routes/tasks.js
 const express = require("express");
 const router = express.Router();
-const axios = require("axios");
 
-const { addToDB } = require('../db');
+// Import database functions
+const { addToDB, getAllTasks, getTaskById } = require("../db");
 
+// POST route to create a new task
 router.post("/", async (req, res) => {
     try {
         console.log("req.body", req.body);
-        await addToDB(req.body);
+
+        // Build a new task object
+        const newTask = {
+            title: req.body.title,
+            completed: req.body.completed === "on",
+            createdAt: new Date(),
+        };
+
+        // Add the new task to the database
+        await addToDB(newTask);
+
+        // Redirect to tasks list
         res.redirect("/tasks");
-        // or await db.addToDB(req.body);
-        // res.send("data received");
-    }
-    catch (err) {
+    } catch (err) {
         res.status(500).send(err.message);
     }
 });
 
-// GET all tasks
-router.get("/", async function (req, res) {
-    await axios.get("https://jsonplaceholder.typicode.com/todos")
-        .then(function (response) {
-            const tasks = response.data;
-            res.render("tasks", { tasks: tasks });
-        })
-        .catch(function (error) {
-            console.log(error);
-            res.send("An error occurred");
-        });
+// GET all tasks (replaces external API call with DB query)
+router.get("/", async (req, res) => {
+    try {
+        const tasks = await getAllTasks();
+        res.render("tasks", { tasks });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("An error occurred while retrieving tasks");
+    }
 });
 
-router.get("/newtask", function (req, res) {
+// GET form to create a new task
+router.get("/newtask", (req, res) => {
     res.render("taskForm");
 });
 
 // GET a single task by ID
-router.get("/:taskId", function (req, res) {
-    const taskId = req.params.taskId;
-    axios.get(`https://jsonplaceholder.typicode.com/todos/${taskId}`)
-        .then(function (response) {
-            const task = response.data;
-            res.render("task", {
-                id: task.id,
-                title: task.title,
-                completed: task.completed
-            });
-        })
-        .catch(function (error) {
-            console.log(error);
-            res.send("An error occurred while fetching task details.");
-        });
+router.get("/:taskId", async (req, res) => {
+    try {
+        const taskId = req.params.taskId;
+        const task = await getTaskById(taskId);
+
+        if (!task) {
+            return res.status(404).send("Task not found");
+        }
+
+        res.render("task", { task });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("An error occurred while fetching task details.");
+    }
 });
 
 module.exports = router;
