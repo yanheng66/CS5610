@@ -2,6 +2,21 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
+const { addToDB } = require('../db');
+
+router.post("/", async (req, res) => {
+    try {
+        console.log("req.body", req.body);
+        await addToDB(req.body);
+        res.redirect("/tasks");
+        // or await db.addToDB(req.body);
+        // res.send("data received");
+    }
+    catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
 // GET all tasks
 router.get("/", async function (req, res) {
     await axios.get("https://jsonplaceholder.typicode.com/todos")
@@ -13,6 +28,10 @@ router.get("/", async function (req, res) {
             console.log(error);
             res.send("An error occurred");
         });
+});
+
+router.get("/newtask", function (req, res) {
+    res.render("taskForm");
 });
 
 // GET a single task by ID

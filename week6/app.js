@@ -1,3 +1,8 @@
+const db = require("./db.js");
+console.log(db);
+require("dotenv").config();
+console.log(process.env);
+
 // Use writefile(File Write) to write a text to a file
 const fs = require('fs');
 fs.writeFile('data.txt', "this is a message", (err) => {
@@ -24,6 +29,9 @@ app.set("views", "./views");
 // Make the 'public' directory a static(Static) resource
 app.use(express.static('public'));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Import the router(Router) from ./routes/tasks
 const tasksRouter = require("./routes/tasks");
 app.use("/tasks", tasksRouter);
@@ -35,6 +43,8 @@ app.get('/', function (req, res) {
 
 // Listen on port(Port)
 const port = 3000;
-app.listen(port, function () {
+app.listen(port, async function () {
     console.log(`Server running at http://localhost:${port}`);
+    await db.connect();
+    console.log("Connected to the database...");
 });
