@@ -1,8 +1,7 @@
 const { MongoClient } = require('mongodb');
 require("dotenv").config();
 const uri = "mongodb+srv://yanhengjiang123:ObMwS3jhZ4gzx04R@cluster0.7ciig.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const client = new MongoClient(url);
-
+const client = new MongoClient(uri);
 module.exports = {
     connect: async function () {
         await client.connect();

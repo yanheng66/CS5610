@@ -29,12 +29,12 @@ app.set("views", "./views");
 // Make the 'public' directory a static(Static) resource
 app.use(express.static('public'));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Import the router(Router) from ./routes/tasks
 const tasksRouter = require("./routes/tasks");
 app.use("/tasks", tasksRouter);
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // Root route(Route)
 app.get('/', function (req, res) {

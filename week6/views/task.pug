@@ -1,9 +1,14 @@
 doctype html
 html(lang="en")
   head
-    title Task Details
+    title New Task
   body
-    h1 You are viewing task #{id}
-    p Task title: #{title}
-    p Task status: #{completed ? "Completed" : "Not Completed"}
-    a(href="/tasks") Back to tasks list
+    h1 Create New Task
+    form(action="/tasks", method="POST") // form element with proper action and method
+      label(for="title") Title:
+      input(type="text", name="title", id="title")
+      br
+      label(for="completed") Completed:
+      input(type="checkbox", name="completed", id="completed")
+      br
+      button(type="submit") Submit
