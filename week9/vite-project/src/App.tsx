@@ -1,11 +1,6 @@
 import React from 'react'
 import Header from './component/Header'
-
-type task = {
-  id: number;
-  title: string;
-  date: string;
-}
+import TasksList from './component/TasksList';
 
 export default function App() {
   const name: string = 'React'
@@ -30,15 +25,8 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <Header name={name} version={2}></Header>
-      <ul className="task-list">
-        {tasks.map((task) => (
-          <li key={task.id} className="task-item">
-            <h3>{task.title}</h3>
-            <p>{task.date}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <Header name={name} version={2} />
+      <TasksList tasks={tasks} />
+    </div >
   )
 }
