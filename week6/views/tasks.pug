@@ -1,10 +1,12 @@
 doctype html
 html(lang="en")
   head
-    title= "Tasks List"
+    title Tasks List
   body
-    h1 List of Tasks
+    h1 All Tasks
     ul
-      each task in tasks
+      each t in tasks
         li
-          a(href=`/tasks/${task.id}`) #{task.title}
+          a(href=`/tasks/${t._id}`) #{t.title} (#{t.completed ? "completed" : "not completed"})
+    br
+    a(href="/tasks/newtask") Create a new task
