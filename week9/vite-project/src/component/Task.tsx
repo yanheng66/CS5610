@@ -5,7 +5,6 @@ type task = {
 }
 
 export default function Task(task: task) {
-
     return (
         <li key={task.id} className="task-item">
             <div className="task-actions">

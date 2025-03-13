@@ -1,5 +1,3 @@
-import React, { version } from 'react'
-
 interface HeaderProps {
     name: string;
     version: number;

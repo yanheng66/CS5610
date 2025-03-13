@@ -1,6 +1,34 @@
+import { useState } from 'react';
 import Task from './Task'
 
-export default function TasksList({ tasks }: { tasks: { id: number, title: string, date: string }[] }) {
+type task = {
+    id: number;
+    title: string;
+    date: string;
+}
+
+export default function TasksList() {
+
+    const [tasks, setTasks] = useState<task[]>([
+        {
+            id: 1,
+            title: "Review week 9 material",
+            date: "June 4th at 1 pm",
+        },
+        {
+            id: 2,
+            title: "Do quiz 9",
+            date: "June 4th at 6 pm",
+        },
+        {
+            id: 3,
+            title: "Work on assignment 2",
+            date: "June 5th at 8 am",
+        },
+    ]);
+
+    // setTasks([]);
+
     return (
         <div>
             <ul className="task-list">
