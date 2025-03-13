@@ -1,0 +1,11 @@
+doctype html
+html(lang="en")
+  head
+    title Task Details
+  body
+    h1 You are viewing task #{task._id}
+    p Title: #{task.title}
+    p Status: #{task.completed ? "Completed" : "Not Completed"}
+    if task.createdAt
+      p Date: #{task.createdAt}
+    a(href="/tasks") Back to tasks list
