@@ -29,11 +29,20 @@ export default function TasksList() {
 
     // setTasks([]);
 
+    function deleteTask(id: number) {
+        setTasks(tasks.filter((task) => task.id !== id));
+    }
+
     return (
         <div>
             <ul className="task-list">
                 {tasks.map((task) => (
-                    <Task key={task.id} id={task.id} title={task.title} date={task.date} />
+                    <Task
+                        key={task.id}
+                        id={task.id}
+                        title={task.title}
+                        date={task.date}
+                        onDelete={deleteTask} />
                 ))}
             </ul>
         </div>
