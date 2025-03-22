@@ -1,14 +1,18 @@
 import { useState } from "react";
 
+interface Task {
+    title: string;
+    date: string;
+}
+
 interface AddTaskProps {
-    onAddTask: (task: { title: string; date: string }) => void;
+    onAddTask: (task: Task) => void;
 }
 
 const AddTask: React.FC<AddTaskProps> = ({ onAddTask }) => {
     const [title, setTitle] = useState<string>("");
     const [date, setDate] = useState<string>("");
 
-    // Handle form submission
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -18,7 +22,7 @@ const AddTask: React.FC<AddTaskProps> = ({ onAddTask }) => {
         }
 
         const newTask = { title, date };
-        onAddTask(newTask); // Send task to parent
+        onAddTask(newTask);
 
         setTitle("");
         setDate("");
