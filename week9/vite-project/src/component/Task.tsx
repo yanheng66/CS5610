@@ -1,16 +1,25 @@
-type task = {
-    id: number;
-    title: string;
-    date: string;
+import { FaTrash } from "react-icons/fa";
+import { TaskType } from "./TasksList";
+
+interface TaskProps {
+    task: TaskType;
+    onDelete: (id: number) => void;
 }
 
-export default function Task(task: task) {
+const Task: React.FC<TaskProps> = ({ task, onDelete }) => {
     return (
-        <li key={task.id} className="task-item">
-            <div className="task-actions">
-                <h3>{task.title}</h3>
-                <p>{task.date}</p>
+        <li className="task-item">
+            <div className="task-container">
+                <div className="task-content">
+                    <p>
+                        <strong>{task.title}</strong>
+                    </p>
+                    <p>{task.date}</p>
+                </div>
+                <FaTrash className="delete-icon" onClick={() => onDelete(task.id)} />
             </div>
         </li>
-    )
-}
+    );
+};
+
+export default Task;
