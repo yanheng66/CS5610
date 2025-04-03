@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-interface Task {
+interface TaskInput {
     title: string;
     date: string;
 }
 
 interface AddTaskProps {
-    onAddTask: (task: Task) => void;
+    onAddTask: (task: TaskInput) => void;
 }
 
 const AddTask: React.FC<AddTaskProps> = ({ onAddTask }) => {
@@ -21,7 +21,7 @@ const AddTask: React.FC<AddTaskProps> = ({ onAddTask }) => {
             return;
         }
 
-        const newTask = { title, date };
+        const newTask: TaskInput = { title, date };
         onAddTask(newTask);
 
         setTitle("");
