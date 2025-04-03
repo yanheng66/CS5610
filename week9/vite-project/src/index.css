@@ -23,6 +23,11 @@ a:hover {
   color: #535bf2;
 }
 
+a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -32,7 +37,7 @@ body {
 
 h1 {
   font-size: 3.2em;
-  line-height: 1.1;
+  line-height: l.1;
 }
 
 button {
@@ -45,6 +50,8 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 button:hover {
@@ -71,6 +78,12 @@ button:focus-visible {
   }
 }
 
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .app-container {
   border: 2px solid black;
   padding: 20px;
@@ -81,7 +94,9 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
 }
 
 .add-task-btn {
@@ -93,4 +108,54 @@ button:focus-visible {
 
 .add-task-btn:hover {
   background-color: lightgray;
+}
+
+.user-logged-in {
+  color: green;
+  font-weight: bold;
+}
+
+.form-control {
+  margin-bottom: 15px;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.task-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  list-style-type: none;
+}
+
+.task-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-content {
+  flex-grow: 1;
+}
+
+.delete-icon {
+  color: red;
+  cursor: pointer;
+}
+
+ul {
+  padding-left: 0;
 }
