@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import AddTask from "./component/AddTask";
 import TasksList from "./component/TasksList";
 import Header from "./component/Header";
@@ -16,6 +17,7 @@ export interface Task {
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const { isLoading, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     async function fetchData() {
@@ -32,8 +34,13 @@ const App: React.FC = () => {
         setLoading(false);
       }
     }
-    fetchData();
-  }, []);
+    
+    if (isAuthenticated) {
+      fetchData();
+    } else {
+      setLoading(false);
+    }
+  }, [isAuthenticated]);
 
   const handleAddTask = async (task: Omit<Task, "id">) => {
     try {
@@ -68,7 +75,7 @@ const App: React.FC = () => {
     }
   };
 
-  if (loading) {
+  if (isLoading || loading) {
     return <div>Loading ...</div>;
   }
 
@@ -79,20 +86,26 @@ const App: React.FC = () => {
         <NavLink to="/" style={{ marginRight: "10px" }}>
           Home
         </NavLink>
-        <NavLink to="/tasks">Tasks</NavLink>
+        {isAuthenticated && (
+          <NavLink to="/tasks">Tasks</NavLink>
+        )}
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/tasks"
-          element={
-            <>
-              <AddTask onAddTask={handleAddTask} />
-              <TasksList tasks={tasks} onDelete={handleDeleteTask} />
-            </>
-          }
-        />
-        <Route path="/tasks/:taskId" element={<TaskDetail />} />
+        {isAuthenticated ? (
+          <>
+            <Route
+              path="/tasks"
+              element={
+                <>
+                  <AddTask onAddTask={handleAddTask} />
+                  <TasksList tasks={tasks} onDelete={handleDeleteTask} />
+                </>
+              }
+            />
+            <Route path="/tasks/:taskId" element={<TaskDetail />} />
+          </>
+        ) : null}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
